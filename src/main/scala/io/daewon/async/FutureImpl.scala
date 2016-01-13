@@ -1,9 +1,11 @@
 package io.daewon.async
 
+import io.daewon.util.Functor
+
 import scala.concurrent.ExecutionContext
 import scala.util._
 
-class FutureImpl[A]()(implicit ec: ExecutionContext) extends Future[A] {
+class FutureImpl[A]()(implicit ec: ExecutionContext) extends Future[A] with Functor[A, Future] {
   type FutureCallback = Try[A] => Any
 
   object status {
